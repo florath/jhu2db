@@ -27,10 +27,11 @@ def get_data(data, fname):
                 data.append(
                     {
                         'date': ts,
-                        'area': [line[0], line[1]],
+                        'adm': [line[0], line[1]],
                         'infected': line[3],
                         'dead': line[4],
-                        'recovered': line[5]
+                        'recovered': line[5],
+                        'source': 'JHU',
                     })
             except ValueError as ve:
                 # If there is a problem e.g. converting the ts

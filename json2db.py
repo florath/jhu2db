@@ -11,7 +11,7 @@ def mongodb_connect():
     return db["cases"]
 
 def read_data():
-    with open("data/jhu-data-20200321-0830.json") as fd:
+    with open("data/rki-data-20200321-1315.json") as fd:
         jdata = json.load(fd)
     return jdata
 
