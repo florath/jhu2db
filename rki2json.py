@@ -3,6 +3,7 @@
 import json
 import argparse
 import re
+import requests
 
 def parse_args():
     parser = argparse.ArgumentParser()
@@ -10,8 +11,6 @@ def parse_args():
                         help="input file")
     args = parser.parse_args()
     return args.input
-
-ToDo = 4
 
 def rki2json(jdata):
     converted = []
@@ -28,7 +27,7 @@ def rki2json(jdata):
         dead = todesfall
 
         adm = ["DE"]
-        if a['IdBundesland'] < 10:
+        if int(a['IdBundesland']) < 10:
             adm.append('0' + str(a['IdBundesland']))
         else:
             adm.append(str(a['IdBundesland']))
@@ -41,7 +40,7 @@ def rki2json(jdata):
 
         nd = {
             'date': int(a['Meldedatum'] / 1000), # The ts in the RKI is is ms
-            'adm': [ 'DE', a['IdBundesland'], a['IdLandkreis'] ],
+            'adm': adm,
             'gender': 'm' if a['Geschlecht'] == 'M' else 'f',
             'infected': infected,
             'deaths': dead,
