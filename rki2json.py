@@ -29,10 +29,10 @@ def rki2json(jdata):
 
         nd = {
             'date': int(a['Meldedatum'] / 1000), # The ts in the RKI is is ms
-            'adm': [ a['IdBundesland'], a['IdLandkreis'] ],
+            'adm': [ 'DE', a['IdBundesland'], a['IdLandkreis'] ],
             'gender': 'm' if a['Geschlecht'] == 'M' else 'f',
             'infected': infected,
-            'dead': dead,
+            'deaths': dead,
             'source': 'RKI'
             }
 

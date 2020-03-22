@@ -24,13 +24,18 @@ def get_data(data, fname):
                 continue
             try:
                 ts = convert_ts(line[2])
+
+                adm = [line[1]]
+                if line[0] != '':
+                    adm.append(line[0])
+                
                 data.append(
                     {
                         'date': ts,
-                        'adm': [line[0], line[1]],
-                        'infected': line[3],
-                        'dead': line[4],
-                        'recovered': line[5],
+                        'adm': adm,
+                        'infected': int(line[3]),
+                        'deaths': int(line[4]),
+                        'recovered': int(line[5]),
                         'source': 'JHU',
                     })
             except ValueError as ve:
