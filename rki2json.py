@@ -27,6 +27,18 @@ def rki2json(jdata):
         infected = fall - todesfall
         dead = todesfall
 
+        adm = ["DE"]
+        if a['IdBundesland'] < 10:
+            adm.append('0' + str(a['IdBundesland']))
+        else:
+            adm.append(str(a['IdBundesland']))
+        lk = int(a['IdBundesland']) % 100
+        if lk < 10:
+            lk = '00' + str(lk)
+        elif lk < 100:
+            lk = '0' + str(lk)
+        adm.append(lk)
+
         nd = {
             'date': int(a['Meldedatum'] / 1000), # The ts in the RKI is is ms
             'adm': [ 'DE', a['IdBundesland'], a['IdLandkreis'] ],

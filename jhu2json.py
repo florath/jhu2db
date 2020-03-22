@@ -36,7 +36,9 @@ def get_data(data, fname):
                         'infected': int(line[3]),
                         'deaths': int(line[4]),
                         'recovered': int(line[5]),
-                        'source': 'JHU',
+                        'sex': 'NaN', # Not sure why this is needed????
+                        # 'source': 'JHU',
+                        'source': ObjectId("5e75f8d7745bde4a48972b42")
                     })
             except ValueError as ve:
                 # If there is a problem e.g. converting the ts
